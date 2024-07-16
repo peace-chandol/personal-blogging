@@ -15,7 +15,11 @@ async function fetchAllBlogs(url) {
 
         let blogHtml = ''
         for (const item of data) {
-            blogHtml += `<div><h2>${item.title}</h2></div>`
+            blogHtml += `
+                <div> 
+                    <h2><a href="blog.html?id=${item._id}">${item.title}</a></h2>
+                </div>
+            `
             Blogs.push({
                 id: item._id,
                 title: item.title,

@@ -1,17 +1,17 @@
-// All Blogs
+// Get All Blogs
 const allBlogs = document.getElementsByClassName('all-blogs')[0]
 
 let Blogs = []
 
 async function fetchAllBlogs(url) {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url)
 
         if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.status}`);
+            throw new Error(`Error fetching data: ${response.status}`)
         }
 
-        const data = await response.json();
+        const data = await response.json()
 
         let blogHtml = ''
         for (const item of data) {
@@ -28,10 +28,9 @@ async function fetchAllBlogs(url) {
             })
         }
         allBlogs.innerHTML = blogHtml
-        // console.log(Blogs)
 
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error)
     }
 }
 

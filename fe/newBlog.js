@@ -10,16 +10,16 @@ async function createBlogPost(url, title, content, category) {
         });
 
         if (!response.ok) {
-            throw new Error(`Error creating post: ${response.status}`);
+            throw new Error(`Error creating post: ${response.status}`)
         }
 
-        const data = await response.json();
+        const data = await response.json()
 
-        console.log('Post created successfully:', data);
+        console.log('Post created successfully:', data)
 
         window.location.href = 'index.html'
     } catch (error) {
-        console.error('Error creating post:', error);
+        console.error('Error creating post:', error)
     }
 }
 

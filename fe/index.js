@@ -13,25 +13,29 @@ async function fetchAllBlogs(url) {
 
         const data = await response.json()
 
-        let blogHtml = ''
-        for (const item of data) {
-            blogHtml += `
-                <div> 
-                    <h2><a href="blog.html?id=${item._id}">${item.title}</a></h2>
-                </div>
-            `
-            Blogs.push({
-                id: item._id,
-                title: item.title,
-                content: item.content,
-                category: item.category,
-            })
-        }
-        allBlogs.innerHTML = blogHtml
-
+        allBlogs.innerHTML = createBlogElement(data)
+        
     } catch (error) {
         console.error('Error fetching data:', error)
     }
 }
 
 fetchAllBlogs('http://localhost:3000/blogs')
+
+function createBlogElement(blogsData) {
+    let blogHtml = ''
+    for (const item of blogsData) {
+        blogHtml += `
+        <div> 
+        <h2><a href="blog.html?id=${item._id}">${item.title}</a></h2>
+        </div>
+        `
+        Blogs.push({
+            id: item._id,
+            title: item.title,
+            content: item.content,
+            category: item.category,
+        })
+    }
+    return blogHtml
+}

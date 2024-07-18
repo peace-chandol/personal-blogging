@@ -1,9 +1,8 @@
 const Blog = require('../models/Blog')
 
 const getAllBlogs = async (req, res) => {
-    //DO: filter search
     try {
-        const blogs = await Blog.find().lean()
+        const blogs = await Blog.find().sort({updatedAt: -1}).lean()
         if (!blogs?.length) {
             return res.status(400).json({ message: 'No blogs found' })
         }

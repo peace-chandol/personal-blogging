@@ -27,11 +27,10 @@ function createBlogHtml(blogsData) {
     let blogHtml = ''
     for (const item of blogsData) {
         blogHtml += `
-        <div> 
+        <div class="blog-display-container"> 
         <h2><a href="blog.html?id=${item.id}">${item.title}</a></h2>
-        <p>Category: ${item.category}</p>
+        <p>${item.category}</p>
         </div>
-        <hr>
         `
     }
     allBlogs.innerHTML = blogHtml

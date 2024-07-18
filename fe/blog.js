@@ -4,7 +4,8 @@ const id = urlParams.get('id');
 
 // Get Blog
 const btnContainer = document.getElementsByClassName('btn-container')[0]
-const blog = document.getElementById('blog-container')
+const blogContent = document.getElementById('blog-content')
+const blogTitle = document.getElementById('blog-title')
 
 async function fetchBlog(url) {
     try {
@@ -16,6 +17,7 @@ async function fetchBlog(url) {
 
         const data = await response.json()
 
+        setBlogTitle(data)
         setBtnContent(data)
         setBlogContent(data)
 
@@ -26,23 +28,25 @@ async function fetchBlog(url) {
 
 fetchBlog(`http://localhost:3000/blogs/${id}`)
 
-function setBlogContent(data) {
-    blog.innerHTML = `
-        <div>
+function setBlogTitle(data) {
+    blogTitle.innerHTML = `
             <h1>${data.title}</h1>
-        </div>
+            <p>${data.category}</p>
+    `
+}
+
+function setBlogContent(data) {
+    blogContent.innerHTML = `
         <div>
             <p>${data.content}</p>
         </div>
-        <div>
-            <p>Category: ${data.category}</p>
-        </div>
+
     `
 }
 
 function setBtnContent(data) {
     btnContainer.innerHTML = `
-        <a href="editBlog.html?id=${id}&title=${data.title}&category=${data.category}">Edit</a>
+        <button onclick="location.href='editBlog.html?id=${id}&title=${data.title}&category=${data.category}'">Edit</button>
         <button id="delete-btn">Delete</button>
     `
 }

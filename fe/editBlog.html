@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Blog</title>
+    <link rel="stylesheet" href="style.css">
     <script defer src="editBlog.js"></script>
 </head>
 <body>
     <nav>
-        <a href="index.html">Back</a>
+        <ul>
+            <li><a href="index.html">Blogs</a></li>
+            <li><a href="newBlog.html">Create Blog</a></li>
+        </ul>
+        <div>PERSONAL BLOGGING</div>
     </nav>
 
-    <form>
-        <div>
+    <div class="form-container">
+        <div class="form-title">
             <label>Title</label>
             <input type="text" name="" id="title" required>
         </div>
-        <div>
-            <label>Content</label>
-            <textarea id="content" required></textarea>
-        </div>
-        <div>
+        <div class="category-container">
             <label>Category</label>
             <select id="category">
                 <option value="Art">Art</option>
@@ -32,7 +33,11 @@
                 <option value="Other">Other</option>
             </select>
         </div>
-        <button type="submit" id="save-edit-btn">Submit</button>
-    </form>
+        <div class="form-content">
+            <label>Content</label>
+            <textarea id="content" required></textarea>
+        </div>
+        <button type="submit" id="save-edit-btn">Save</button>
+    </div>
 </body>
 </html>

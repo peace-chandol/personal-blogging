@@ -13,8 +13,9 @@ async function fetchAllBlogs(url) {
 
         const data = await response.json()
 
-        allBlogs.innerHTML = createBlogElement(data)
-        
+        createBlogsArray(data)
+        createBlogHtml(Blogs)
+
     } catch (error) {
         console.error('Error fetching data:', error)
     }
@@ -22,14 +23,22 @@ async function fetchAllBlogs(url) {
 
 fetchAllBlogs('http://localhost:3000/blogs')
 
-function createBlogElement(blogsData) {
+function createBlogHtml(blogsData) {
     let blogHtml = ''
     for (const item of blogsData) {
         blogHtml += `
         <div> 
-        <h2><a href="blog.html?id=${item._id}">${item.title}</a></h2>
+        <h2><a href="blog.html?id=${item.id}">${item.title}</a></h2>
+        <p>Category: ${item.category}</p>
         </div>
+        <hr>
         `
+    }
+    allBlogs.innerHTML = blogHtml
+}
+
+function createBlogsArray(blogsData) {
+    for (const item of blogsData) {
         Blogs.push({
             id: item._id,
             title: item.title,
@@ -37,5 +46,18 @@ function createBlogElement(blogsData) {
             category: item.category,
         })
     }
-    return blogHtml
 }
+
+// Filter Category
+const categoryFilter = document.getElementById('category-filter')
+
+categoryFilter.addEventListener('change', (e) => {
+    if (e.target.value === 'All') {
+        createBlogHtml(Blogs)
+        return
+    }
+    const newBlog = Blogs.filter(item => {
+        return item.category === e.target.value
+    })
+    createBlogHtml(newBlog)
+})

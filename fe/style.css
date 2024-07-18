@@ -12,6 +12,9 @@ body {
     background-color: #9fccc6;
 }
 
+button {
+    cursor: pointer;
+}
 
 /* index */
 nav {
@@ -92,6 +95,7 @@ nav ul li a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .blog-display-container a {

@@ -46,9 +46,13 @@ function setBlogContent(data) {
 
 function setBtnContent(data) {
     btnContainer.innerHTML = `
-        <button onclick="location.href='editBlog.html?id=${id}&title=${data.title}&category=${data.category}'">Edit</button>
+        <button onclick="location.href='editBlog.html?id=${id}&title=${data.title}&category=${data.category}&content=${data.content}'">Edit</button>
         <button id="delete-btn">Delete</button>
-    `
+        `
+        const deleteBtn = document.getElementById('delete-btn')
+        deleteBtn.addEventListener('click', () => {
+            deleteBlog(`http://localhost:3000/blogs/${id}`)
+        })
 }
 
 
@@ -69,8 +73,4 @@ async function deleteBlog(url) {
     } catch (error) {
         console.error('Error deleting post:', error)
     }
-
-
-    const deleteBtn = document.getElementById('delete-btn')
-    deleteBtn.addEventListener('click', () => deleteBlog(`http://localhost:3000/blogs/${id}`))
 }

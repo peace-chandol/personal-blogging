@@ -3,6 +3,7 @@ const urlParams = new URLSearchParams(window.location.search)
 const id = urlParams.get('id')
 const oldTitle = urlParams.get('title')
 const oldCategory = urlParams.get('category')
+const oldContent = urlParams.get('content')
 
 // Edit Blog
 async function editBlog(url, title, content, category) {
@@ -43,7 +44,7 @@ editBtn.addEventListener('click', (e) => {
 
 function initData() {
     title.value = oldTitle || ''
-    content.value = ''
+    content.value = oldContent || ''
     category.value = oldCategory
 }
 

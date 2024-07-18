@@ -27,7 +27,7 @@ function createBlogHtml(blogsData) {
     let blogHtml = ''
     for (const item of blogsData) {
         blogHtml += `
-        <div class="blog-display-container"> 
+        <div class="blog-display-container" onclick="location.href='blog.html?id=${item.id}'">
         <h2><a href="blog.html?id=${item.id}">${item.title}</a></h2>
         <p>${item.category}</p>
         </div>
